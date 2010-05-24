@@ -44,7 +44,7 @@
           &nbsp; &#8226; &nbsp;
           <a href="http://github.com/nshah/js-intro">http://github.com/nshah/js-intro</a>
         </h1>
-        <h2>Naitik Shah &#8226; Stanford University &#8226; May 23<sup>rd</sup>, 2010</h2>
+        <h2>Naitik Shah &#8226; Stanford University &#8226; May 24<sup>th</sup>, 2010</h2>
       </div>
     </div>
 
@@ -70,6 +70,10 @@
       </div>
 
       <div class="slide">
+        <img src="images/js-devices.png" style="position: relative; top: -3em; left: 3em;">
+      </div>
+
+      <div class="slide">
         <h1>Why JavaScript</h1>
         <ul>
           <li>One of the most widely deployed Languages</li>
@@ -77,6 +81,12 @@
           <li>No XCode or Visual Studio required</li>
           <li>The refresh button</li>
           <li>It's fun!</li>
+        </ul>
+
+        <ul>
+          <li><a href="http://mugtug.com/sketchpad/">SketchPad</a></li>
+          <li><a href="http://www.facebook.com/">Facebook</a></li>
+          <li><a href="http://maps.google.com/">Google Maps</a></li>
         </ul>
       </div>
 
@@ -97,16 +107,17 @@
           <li>
             Dynamic Typing
             <script type="example">
-              var dozen = 12;
-              var pi = 3.14;
-              var name = 'Stanford';
-              var dozenPi = dozen * pi; // 37.68
-              var yes = true;
-              var no = false;
-              var now = new Date();
+              var game = 'Beer Pong';
+              var totalCups = 6;
+              var averageHitRate = 0.7;
+              var gameActive = true;
+              var startedAt = new Date('2010-05-23 21:00');
             </script>
           </li>
         </ul>
+        <div style="text-align: center;">
+          <img src="images/beer_pong.jpg" width="384" height="250">
+        </div>
       </div>
 
       <div class="slide">
@@ -114,17 +125,18 @@
         <ul>
           <li>
             Conditions
-            <script type="example">
-              if (new Date().getDay() === 1) {
-                alert("It's Monday.");
+            <script type="example" class="runnable">
+              var activeTeam = 'red';
+              if (activeTeam === 'red') {
+                alert("Red's turn.");
               }
             </script>
           </li>
           <li>
             For Loops
-            <script type="example">
+            <script type="example" class="runnable">
               for (var i=0; i < 2; i++) {
-                alert('Count: ' + i);
+                alert('Game: ' + i);
               }
             </script>
           </li>
@@ -137,18 +149,20 @@
         <ul>
           <li>
             Can be assigned to variables:
-            <script type="example">
-              var welcome = function() {
-                alert("Hello, Stanford.");
+            <script type="example" class="runnable">
+              var announceScore = function(team, score) {
+                alert(team + ' team won ' + score + ' games.');
               };
+              announceScore('red', 3);
             </script>
           </li>
           <li>
             Or the special syntax:
-            <script type="example">
-              function welcome() {
-                alert("Hello, Stanford.");
+            <script type="example" class="runnable">
+               function announceScore(team, score) {
+                alert(team + ' team won ' + score + ' games.');
               }
+              announceScore('red', 3);
             </script>
           </li>
         </ul>
@@ -160,43 +174,35 @@
           <li>
             Literals
             <script type="example">
-              var myArray = [1, 2, 3];
-              var data = ["Naitik Shah", "n@daaku.org", 1983];
+              var gameWinners = ['red', 'blue', 'red', 'red'];
+
+              var alsoDynamic = [
+                'red',
+                3,
+                'red@team.com',
+                new Date('2010')
+              ];
             </script>
           </li>
-          <li>
-            queue, stack-like behavior:
-            <script type="example">
-              myArray.push(4);
-              var one = myArray.shift();
-              var four = myArray.pop();
-              myArray.unshift('first');
-            </script>
-          </li>
+          <li>native queue, stack-like behavior: push/pop/shift/unshift</li>
         </ul>
       </div>
 
       <div class="slide">
         <h1>Objects</h1>
-        <ul>
-          <li>
-            Literals
-            <script type="example">
-              var loc = { x: 10, y: 15 };
-
-              var Square = {
-                sides: 4,
-                length: 2.5,
-                getArea: function() {
-                  return this.length * this.length;
+        <div>
+            <script type="example" class="runnable">
+              var BeerPongGame = {
+                activeTeam: 'blue',
+                history: {
+                  blue: [0, 1, 1],
+                  red: [1, 0, 1, 1]
                 }
               };
 
-              alert(Square.getArea()); // 6.25
-              alert(Square.sides); // 4
+              alert(BeerPongGame.activeTeam);
             </script>
-          </li>
-        </ul>
+        </div>
       </div>
 
       <div class="slide">
@@ -219,7 +225,12 @@
               }
             </script>
         </div>
-        Real World: <a href="https://graph.facebook.com/jerry">https://graph.facebook.com/jerry</a>
+      </div>
+
+      <div class="slide" style="text-align: center;">
+        <h1>Real World Use</h1>
+        <img src="images/graph-api.png" style="vertical-align: top;">
+        <img src="images/yql.png">
       </div>
 
       <div class="slide">
@@ -228,26 +239,31 @@
 
       <div class="slide">
         <h1>Objects Extended</h1>
-            <script type="example">
-              var Circle = function(radius) {
-                this.radius = radius;
+        <div style="font-size: 82%;">
+            <script type="example" class="runnable">
+              var Team = function(color) {
+                this.color = color;
+                this.wins = 0;
               };
-              Circle.prototype.getArea = function() {
-                return Math.PI * this.radius * this.radius;
+              Team.prototype.incrementWin = function() {
+                this.wins++;
               };
 
-              var small = new Circle(10);
-              var big = new Circle(100);
+              var red = new Team('red');
+              var blue = new Team('blue');
 
-              alert(small.getArea());
-              alert(big.getArea());
+              red.incrementWin();
+
+              alert(red.wins);
+              alert(blue.wins);
             </script>
+        </div>
       </div>
 
       <div class="slide">
         <h1>Native Objects Extended -- I</h1>
         <div style="font-size: 70%;">
-            <script type="example">
+            <script type="example" class="runnable">
               var old = 'hold on to this';
 
               String.prototype.isEmpty = function() {
@@ -372,6 +388,11 @@
               var donald = new Duck();
               alert(donald.say());
               alert(donald.yell());
+
+              alert(shambo instanceof Cow); // true
+              alert(shambo instanceof Animal); // true
+              alert(shambo instanceof Object); // true
+              alert(shambo instanceof Duck); // false
             </script>
         </div>
       </div>
@@ -382,8 +403,9 @@
 
       <div class="slide">
         <h1>A first class web citizen</h1>
-        <div style="font-size: 70%;">
-            <script type="example">
+        <img src="images/web-citizen.png" style="float: right">
+        <div style="font-size: 65%;">
+            <script type="example" class="runnable">
               var resolveLocation = function(loc) {
                 $.getJSON(
                   'http://query.yahooapis.com/v1/public/yql?callback=?',
@@ -393,14 +415,20 @@
                   },
                   function(response) {
                     try {
-                      alert('Best Match: ' + response.query.results.place[0].locality1.content);
+                      var locality = response
+                                      .query
+                                      .results
+                                      .place[0]
+                                      .locality1
+                                      .content;
+                      alert('Best Match: ' + locality);
                     } catch(e) {
                       alert('No good match found.');
                     }
                   }
                 );
               };
-              resolveLocation(prompt('Provide some text'));
+              resolveLocation(prompt('Provide some free form location text'));
             </script>
         </div>
       </div>
@@ -411,7 +439,6 @@
           <li>Speed</li>
           <li>Simplicity</li>
           <li>Warts</li>
-          <li><a href="http://mugtug.com/sketchpad/">SketchPad</a></li>
           <li><a href="http://raphaeljs.com/graffle.html">Raphael</a></li>
           <li><a href="http://danforys.com/mesmerizer/">Mesmerizer</a></li>
           <li><a href="http://www.nihilogic.dk/labs/mario/mario_large_music.htm">Mario</a></li>

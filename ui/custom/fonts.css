@@ -24,6 +24,14 @@ pre code {
   line-height: 1.2;
 }
 
-pre.example-code {
+li .example-code {
   margin-top: 1em;
+}
+
+.run-example {
+  float: right;
+  visibility: hidden;
+}
+.example-code:hover .run-example {
+  visibility: visible;
 }
