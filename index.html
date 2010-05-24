@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset=utf-8>
     <title>JavaScript: An Introduction</title>
 
     <!-- metadata -->
@@ -13,14 +14,24 @@
     <meta name="defaultView" content="slideshow">
     <meta name="controlVis" content="hidden">
 
+    <!-- fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Cantarell:bold|Molengo|Yanone+Kaffeesatz|Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+
     <!-- stylesheets -->
     <link rel="stylesheet" href="ui/default/slides.css" type="text/css" media="projection" id="slideProj">
     <link rel="stylesheet" href="ui/default/outline.css" type="text/css" media="screen" id="outlineStyle">
     <link rel="stylesheet" href="ui/default/print.css" type="text/css" media="print" id="slidePrint">
     <link rel="stylesheet" href="ui/default/opera.css" type="text/css" media="projection" id="operaFix">
 
+    <!-- custom stylesheets -->
+    <link rel="stylesheet" href="ui/custom/fonts.css" type="text/css">
+
     <!-- S5 -->
     <script src="ui/default/slides.js"></script>
+
+    <!-- code samples -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script src="ui/custom/code.js"></script>
   </head>
   <body>
     <div class="layout">
@@ -28,8 +39,12 @@
       <div id="currentSlide"><!-- DO NOT EDIT --></div>
       <div id="header"></div>
       <div id="footer">
-        <h1>JavaScript: An Introduction</h1>
-        <h2>Naitik Shah &#8226; Stanford University &#8226; May 21, 2010</h2>
+        <h1>
+          <a href="http://js-intro.daaku.org">http://js-intro.daaku.org/</a>
+          &nbsp; &#8226; &nbsp;
+          <a href="http://github.com/nshah/js-intro">http://github.com/nshah/js-intro</a>
+        </h1>
+        <h2>Naitik Shah &#8226; Stanford University &#8226; May 23<sup>rd</sup>, 2010</h2>
       </div>
     </div>
 
@@ -39,19 +54,348 @@
         <h1>JavaScript: An Introduction</h1>
         <h3>Naitik Shah</h3>
         <h4><a href="mailto:n@daaku.org">n@daaku.org</a></h4>
-        <h4><a href="http://github.com/nshah/js-intro">http://github.com/nshah/js-intro</a></h4>
+        <h4>Follow Along: <a href="http://js-intro.daaku.org">http://js-intro.daaku.org/</a></h4>
+        <h4>Source: <a href="http://github.com/nshah/js-intro">http://github.com/nshah/js-intro</a></h4>
       </div>
 
+      <div class="slide">
+        <h1>Me</h1>
+        <ul>
+          <li>A Web Engineer</li>
+          <li>Work on the <a href="http://developers.facebook.com/">Facebook Developer Platform</a></li>
+          <li>Experiment with Languages</li>
+          <li>Open Standards: <a href="http://oauth.net/">OAuth</a> &amp; <a href="http://openid.net/">OpenID</a></li>
+          <li>Pushing the Browser limits</li>
+        </ul>
+      </div>
 
       <div class="slide">
         <h1>Why JavaScript</h1>
-        <ul class="incremental">
+        <ul>
           <li>One of the most widely deployed Languages</li>
+          <li>Runs on your iPhone, Android, PC, Mac, Tablet and servers</li>
           <li>No XCode or Visual Studio required</li>
-          <li>Runs on your iPhone, Android and most other modern phones</li>
+          <li>The refresh button</li>
           <li>It's fun!</li>
         </ul>
       </div>
+
+      <div class="slide">
+        <h1>Our Focus</h1>
+        <ul>
+          <li>The Language, not the Browser</li>
+          <li>No DOM or BOM</li>
+          <li>Syntax &amp; Structure</li>
+          <li><code>Function</code> and <code>Object</code>s</li>
+          <li>Official standard we'll focus on is <strong><a href="http://www.ecmascript.org/">ECMAScript 3<sup>rd</sup> Edition</a></strong></li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Variables</h1>
+        <ul>
+          <li>
+            Dynamic Typing
+            <script type="example">
+              var dozen = 12;
+              var pi = 3.14;
+              var name = 'Stanford';
+              var dozenPi = dozen * pi; // 37.68
+              var yes = true;
+              var no = false;
+              var now = new Date();
+            </script>
+          </li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Conditions &amp; Loops</h1>
+        <ul>
+          <li>
+            Conditions
+            <script type="example">
+              if (new Date().getDay() === 1) {
+                alert("It's Monday.");
+              }
+            </script>
+          </li>
+          <li>
+            For Loops
+            <script type="example">
+              for (var i=0; i < 2; i++) {
+                alert('Count: ' + i);
+              }
+            </script>
+          </li>
+          <li>Similarly <code>while</code> loop
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Functions</h1>
+        <ul>
+          <li>
+            Can be assigned to variables:
+            <script type="example">
+              var welcome = function() {
+                alert("Hello, Stanford.");
+              };
+            </script>
+          </li>
+          <li>
+            Or the special syntax:
+            <script type="example">
+              function welcome() {
+                alert("Hello, Stanford.");
+              }
+            </script>
+          </li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Arrays</h1>
+        <ul>
+          <li>
+            Literals
+            <script type="example">
+              var myArray = [1, 2, 3];
+              var data = ["Naitik Shah", "n@daaku.org", 1983];
+            </script>
+          </li>
+          <li>
+            queue, stack-like behavior:
+            <script type="example">
+              myArray.push(4);
+              var one = myArray.shift();
+              var four = myArray.pop();
+              myArray.unshift('first');
+            </script>
+          </li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Objects</h1>
+        <ul>
+          <li>
+            Literals
+            <script type="example">
+              var loc = { x: 10, y: 15 };
+
+              var Square = {
+                sides: 4,
+                length: 2.5,
+                getArea: function() {
+                  return this.length * this.length;
+                }
+              };
+
+              alert(Square.getArea()); // 6.25
+              alert(Square.sides); // 4
+            </script>
+          </li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1><a href="http://json.org/">JavaScript Object Notation</a> (JSON)</h1>
+        <div style="font-size: 82%;">
+            <script type="example">
+              {
+                anInteger: 42,
+                aFloat: 3.14,
+                aString: "foo",
+                aBoolean: true
+                anArray: [
+                  { x: 1, y: 2 },
+                  { x: 3, y: 4 },
+                  "more junk"
+                ],
+                anObject: {
+                  nested: true
+                }
+              }
+            </script>
+        </div>
+        Real World: <a href="https://graph.facebook.com/jerry">https://graph.facebook.com/jerry</a>
+      </div>
+
+      <div class="slide">
+        <h1>Questions?</h1>
+      </div>
+
+      <div class="slide">
+        <h1>Objects Extended</h1>
+            <script type="example">
+              var Circle = function(radius) {
+                this.radius = radius;
+              };
+              Circle.prototype.getArea = function() {
+                return Math.PI * this.radius * this.radius;
+              };
+
+              var small = new Circle(10);
+              var big = new Circle(100);
+
+              alert(small.getArea());
+              alert(big.getArea());
+            </script>
+      </div>
+
+      <div class="slide">
+        <h1>Native Objects Extended -- I</h1>
+        <div style="font-size: 70%;">
+            <script type="example">
+              var old = 'hold on to this';
+
+              String.prototype.isEmpty = function() {
+                return this === '';
+              };
+
+              var something = 'here';
+              var nothing = '';
+
+              if (something.isEmpty()) {
+                alert('Something is empty.');
+              }
+
+              if (nothing.isEmpty()) {
+                alert('Nothing is empty.');
+              }
+
+              if (old.isEmpty()) {
+                alert('Old is empty.');
+              }
+            </script>
+        </div>
+      </div>
+
+      <div class="slide">
+        <h1>Native Objects Extended -- II</h1>
+        <ul>
+          <li>
+          Similarly on <code>Array</code>:
+            <script type="example">
+              Array.prototype.isEmpty = function() {
+                return this.length === 0;
+              };
+            </script>
+          </li>
+          <li>
+            Or <strong>EVERY OBJECT!</strong>:
+            <script type="example">
+              Object.prototype.hasRadius = function() {
+                return typeof this.radius === 'number';
+              };
+            </script>
+          </li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Don't do that</h1>
+        <ul>
+          <li>Almost always a bad idea</li>
+          <li>Unintended consequences</li>
+          <li>Especially on <code>Object.prototype</code></li>
+          <li>
+            You can extended a <strong>specific instance</strong>
+            <div style="font-size: 82%;">
+            <script type="example">
+              var myString = '';
+              myString.isEmpty = function() {
+                return this === '';
+              };
+              myString.isEmpty();
+
+              var myOtherString = '';
+              myString.isEmpty(); // error
+            </script>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Some good use-cases</h1>
+        <ul>
+          <li>Browsers don't always agree on certain things</li>
+          <li>
+            <em>Monkey patch</em> missing features:
+            <script type="example">
+              if (!String.prototype.trim) {
+                String.prototype.trim = function() {
+                  return this.replace(/^\s+|\s+$/, '');
+                };
+              }
+            </script>
+          </li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Questions?</h1>
+      </div>
+
+      <div class="slide">
+        <h1>Prototypical Inheritance</h1>
+        <div style="font-size: 60%; float: left; width: 50%;">
+            <script type="example">
+              var Animal = function() {};
+              Animal.prototype = {
+                say: function() {
+                  throw new Error('This Animal is mute.');
+                },
+
+                yell: function() {
+                  return this.say().toUpperCase();
+                }
+              };
+
+              var Cow = function() {};
+              Cow.prototype = new Animal();
+              Cow.prototype.say = function() {
+                return 'moo';
+              };
+
+              var Duck = function() {};
+              Duck.prototype = new Animal();
+              Duck.prototype.say = function() {
+                return 'quack';
+              };
+            </script>
+        </div>
+        <div style="font-size: 60%; width: 50%;">
+            <script type="example">
+              var shambo = new Cow();
+              alert(shambo.say());
+              alert(shambo.yell());
+
+              var donald = new Duck();
+              alert(donald.say());
+              alert(donald.yell());
+            </script>
+        </div>
+      </div>
+
+      <div class="slide">
+        <h1>Raphaël</h1>
+        <ul>
+          <li>
+            <em>Monkey patch</em> missing features:
+            <script type="example">
+              if (!String.prototype.trim) {
+                String.prototype.trim = function() {
+                  return this.replace(/^\s+|\s+$/, '');
+                };
+              }
+            </script>
+          </li>
+        </ul>
+      </div>
+
 
     </div>
   </body>

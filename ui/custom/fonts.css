@@ -1,0 +1,29 @@
+body {
+  font-family: 'Molengo', arial, serif;
+}
+.presentation .slide h1 {
+  font-family: 'Cantarell', arial, serif;
+  font-weight: bold;
+}
+.presentation .slide h1 a {
+  color: #DDE;
+}
+
+div#footer {
+  font-family: 'Yanone Kaffeesatz', arial, serif;
+}
+div#footer a {
+  color: #666;
+}
+div#footer h2 {
+  font-style: normal;
+}
+
+pre code {
+  font-family: 'Droid Sans Mono', monospace;
+  line-height: 1.2;
+}
+
+pre.example-code {
+  margin-top: 1em;
+}
