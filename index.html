@@ -336,10 +336,6 @@
       </div>
 
       <div class="slide">
-        <h1>Questions?</h1>
-      </div>
-
-      <div class="slide">
         <h1>Prototypical Inheritance</h1>
         <div style="font-size: 60%; float: left; width: 50%;">
             <script type="example">
@@ -381,22 +377,46 @@
       </div>
 
       <div class="slide">
-        <h1>Raphaël</h1>
-        <ul>
-          <li>
-            <em>Monkey patch</em> missing features:
-            <script type="example">
-              if (!String.prototype.trim) {
-                String.prototype.trim = function() {
-                  return this.replace(/^\s+|\s+$/, '');
-                };
-              }
-            </script>
-          </li>
-        </ul>
+        <h1>Questions?</h1>
       </div>
 
+      <div class="slide">
+        <h1>A first class web citizen</h1>
+        <div style="font-size: 70%;">
+            <script type="example">
+              var resolveLocation = function(loc) {
+                $.getJSON(
+                  'http://query.yahooapis.com/v1/public/yql?callback=?',
+                  {
+                    q: 'select * from geo.places where text="' + loc + '"',
+                    format: 'json'
+                  },
+                  function(response) {
+                    try {
+                      alert('Best Match: ' + response.query.results.place[0].locality1.content);
+                    } catch(e) {
+                      alert('No good match found.');
+                    }
+                  }
+                );
+              };
+              resolveLocation(prompt('Provide some text'));
+            </script>
+        </div>
+      </div>
 
+      <div class="slide">
+        <h1>Next</h1>
+        <ul>
+          <li>Speed</li>
+          <li>Simplicity</li>
+          <li>Warts</li>
+          <li><a href="http://mugtug.com/sketchpad/">SketchPad</a></li>
+          <li><a href="http://raphaeljs.com/graffle.html">Raphael</a></li>
+          <li><a href="http://danforys.com/mesmerizer/">Mesmerizer</a></li>
+          <li><a href="http://www.nihilogic.dk/labs/mario/mario_large_music.htm">Mario</a></li>
+        </ul>
+      </div>
     </div>
   </body>
 </html>
